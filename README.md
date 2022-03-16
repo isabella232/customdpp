@@ -2,19 +2,40 @@
 
 ## Overview
 
-The command line tool for display format customization of Microsoft Speech service.
+Custom Display Post Processing CLI (cdpp) is a command-line utility for display format customization of Microsoft Speech service.
 
 Supported on Windows, macOS and several Linux flavors.
 
-## Status
+## Features and capabilities
 
-Supported locales: en-us, pt-br, pt-pt, it-it, es-es, es-mx, fr-fr, fr-ca, zh-cn, ja-jp 
+Supported locales:
 
-Supported service region: westus, westus2, eastus, eastus2, centralindia, northeurope, westeurope, eastasia, japaneast\
+:white_check_mark: en-us
+:white_check_mark: pt-br
+:white_check_mark: pt-pt
+:white_check_mark: it-it
+:white_check_mark: es-es
+:white_check_mark: es-mx
+:white_check_mark: fr-fr
+:white_check_mark: fr-ca
+:white_check_mark: zh-cn
+:white_check_mark: ja-jp
+
+
+Supported service region: 
+- westus
+- westus2
+- eastus
+- eastus2
+- centralindia
+- northeurope
+- westeurope
+- eastasia
+- japaneast
 
 ## Download
 
-The latest binary for AzCopy along with installation instructions may be found here.
+The latest binary for cdpp along with installation instructions may be found here.
 
 https://github.com/Azure/azure-storage-azcopy
 
