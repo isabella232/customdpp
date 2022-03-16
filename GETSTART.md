@@ -1,22 +1,5 @@
-# Custom Display Post Processing CLI
-
-## Overview
-
-The command line tool for display format customization of Microsoft Speech service.
-
-Supported on Windows, macOS and several Linux flavors.
-
-## Status
-
-Supported locales: en-us, pt-br, pt-pt, it-it, es-es, es-mx, fr-fr, fr-ca, zh-cn, ja-jp 
-
-Supported service region: westus, westus2, eastus, eastus2, centralindia, northeurope, westeurope, eastasia, japaneast\
-
-## Download
 
 The latest binary for AzCopy along with installation instructions may be found here.
-
-https://github.com/Azure/azure-storage-azcopy
 
 https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
 
