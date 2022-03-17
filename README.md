@@ -8,7 +8,7 @@ Supported on Windows, macOS and several Linux flavors.
 
 ## Features and capabilities
 
-The Custom DPP CLI enable the customers to rewrite the display text outputed by Microsoft Speech service. Moreover, it provides the Invers Text Normalization (ITN) rules and profanity words customtizations for manhy domain specific scenarios.
+The Custom DPP CLI enable the customers to rewrite the display text output by Microsoft Speech service. Moreover, it provides the Invert Text Normalization (ITN) rules and profanity words customizations for many domain specific scenarios.
 
 
 Supported locales:
@@ -66,7 +66,7 @@ The general format of Custom DPP CLI commands is: `cdpp [command] [arguments] --
 Available Commands:
 * `init` - Create and init a project, scaffolding it with template files
 * `push` - Push the custom model files or test set to Microsoft Speech server
-* `eval` - Evaluate the lastest model pushed to the Microsoft Speech server
+* `eval` - Evaluate the latest model pushed to the Microsoft Speech server
 * `deploy` - Deploy a custom DPP model and bind to a custom speech model
 * `get` - Get model, test set, evaluation or deployment detail information from Microsoft Speech server
 * `check` - Check the format/grammar of the custom rule dataset rewrite, profanity and ITN
@@ -102,3 +102,5 @@ If you choose not to add AzCopy to your path, you'll have to change directories 
 * If your goal is to simply move some files, then `copy` is definitely the right command, since it offers much better performance.
   If the use case is to incrementally transfer data (files present only on source) then `sync` is the better choice, since only the modified/missing files will be transferred.
   Since `sync` enumerates both source and destination to find the incremental change, it is relatively slower as compared to `copy`
+
+### Do we support Bring Your Own Storage?
