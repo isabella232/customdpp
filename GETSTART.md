@@ -37,17 +37,21 @@ Content like display format rule data, models and tests are organized into proje
 
 To create a project, run the following command:
 
-> `cdpp init <name>`
+> `cdpp init <project_name>`
 
 Then, follow the prompt instructions to type in the locale name, region identifier and the Azure subscription key. 
 If the command is succeeded, a project folder is created at the current directory you are running the command, and in the project folder, scaffolding rule files and test files are created.
 
+> Note
+> All the rest `cdpp` commands in this document should be run inside the project folder. You may use following command to enter the project folder.
+> `cd <project_name>`
+
 ## Prepare your data for Custom DPP model
 
-Custom DPP supports three kinds of rules for display format customization, *rewrite*, *profanity* and *ITN*. The collection of the rule data files form a Custom DPP model. The scaffolding rule files of a project are in the `data` subfolder of the project folder. 
+Custom DPP provides three kinds of features for display format customization, *rewrite*, *profanity* and *ITN*. The collection of feature's rule data files forms a Custom DPP model. The scaffolding rule file when a project was created is in the `data` subfolder of the project folder. 
 
 * `data/itn.pat` - The pattern rules to build a custom *ITN* model.
-* `data/rewrite.tsv` - The key value pair rules about how to *rewrite* one phrase to another.
+* `data/rewrite.tsv` - The list of key-value pairs which defined how to *rewrite* one phrase to another.
 * `data/profanity.tsv` - The collection of *profanity* words.
 
 Please see [Concepts](CONCEPTS.md) for more details about how to add/edit the custom rules, and [VS Code](https://code.visualstudio.com/) is recommended as the editor of the rule data files. 
@@ -59,19 +63,62 @@ Once the rule files of a Custom DPP model are ready, run following command to up
 
 > `cdpp push model`
 
+## Prepare your test set data for evaluation
+
+The `test/test.tsv` file is the default test set file for a project. You may put all your test cases into this file.
+
+A test case is composed by two parts, an input lexical phrase (without any digit, punctuation and symbols) and an expected output phrase.
+
+Once the test set file is ready, run following command to upload it to Microsoft Speech server.
+
+> `cdpp push test`
+
+To add another test set, you can just put the file under the `test` subfolder of a project. The [How To](HOWTO.md) article provides more details about hwo to work with an alternative test set.
+
 ## Evaluate your Custom DPP model
 
-The `test/test.tsv` file is the default test set file for a project. You map put all your test cases into this file, or create another test set file under the `test` subfolder of a project as well.
+To evaluate a Custom DPP model with the default `test/test.tsv` test set, after pushing the model and test set to Microsoft Speech server, run following command to start an evaluation job:
+
+> `cdpp eval`
+
+You may use follow command to check the status/progress of the the evaluation:
+
+> `cdpp get eval`
+
+To download the detail evaluation result, run following command:
+
+> `cdpp get eval -t`
+
+You can find the actual output for each test case in the downloaded evaluation result file.
 
 ## Deploy your Custom DPP model
 
-To deploy the model to another region, you can use `cdpp config` to change the region and subscription key settings of the project, make the project points to another region, and then do the deployment for that region.
+To deploy the Custom DPP model
+To deploy the model to another region, you can use `cdpp config` to change the region and subscription key settings of the project, make the project setting points to another region, and then do the deployment for that region.
 
 ## Other useful commands
 
 To list all models, test sets, evaluation and deployment operations in the subscription, run the following command:
 
 > `cdpp list [ model | test | eval | deploy ]`
+
+### Evaluate a Custom DPP model with another test set (put into how to)
+
+To create another test set file under the `test` subfolder of a project as well. 
+
+You may use the `-f` switch to specify what features should be applied to a test set. For example, if a test file (let's say `test/itn_test.tsv`) only has *ITN* related test cases, ????
+
+To upload another test file except the default `test/test.tsv`, put the file into the `test` subfolder of the project, then run following command:
+
+### terminate a evaluation (put how to)
+ 
+
+> `cdpp push test -n <test_file_name_without_extension>`
+
+
+You may use the `-n` switch to specify an alternative test set for evaluation.
+
+> `cdpp eval -n <test_file_name_with_extension>`
 
 ## Next steps
 
