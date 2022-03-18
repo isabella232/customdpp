@@ -13,47 +13,15 @@ The Custom DPP CLI enable the customers to rewrite the display text output by Mi
 
 Supported locales:
 
-:white_check_mark: en-us
+:white_check_mark: en-us :white_check_mark: pt-br :white_check_mark: pt-pt :white_check_mark: it-it :white_check_mark: es-es 
 
-:white_check_mark: pt-br
-
-:white_check_mark: pt-pt
-
-:white_check_mark: it-it
-
-:white_check_mark: es-es
-
-:white_check_mark: es-mx
-
-:white_check_mark: fr-fr
-
-:white_check_mark: fr-ca
-
-:white_check_mark: zh-cn
-
-:white_check_mark: ja-jp
-
+:white_check_mark: es-mx :white_check_mark: fr-fr :white_check_mark: fr-ca :white_check_mark: zh-cn :white_check_mark: ja-jp 
 
 Supported service region: 
 
-:white_check_mark: westus
+:white_check_mark: westus :white_check_mark: westus2 :white_check_mark: eastus :white_check_mark: eastus2 :white_check_mark: japaneast
 
-:white_check_mark: westus2
-
-:white_check_mark: eastus
-
-:white_check_mark: eastus2
-
-:white_check_mark: centralindia
-
-:white_check_mark: northeurope
-
-:white_check_mark: westeurope
-
-:white_check_mark: eastasia
-
-:white_check_mark: japaneast
-
+:white_check_mark: centralindia :white_check_mark: northeurope :white_check_mark: westeurope :white_check_mark: eastasia
 
 ## Download
 

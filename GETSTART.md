@@ -33,7 +33,7 @@ To learn about a specific command, just include the name of the command (For exa
 
 To get started, you need an Azure subscription key and region identifier (for example, eastus, westus). Since Custom DPP service works together with [Custom Speech](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/custom-speech-overview) service, you should use the same Azure subscription key and region identifier for both services.
 
-Content like rule data, models and tests are organized into projects in the Custom DPP. Each project is specific to a domain and country or language. For example, you might create a project for call centers that use English in the United States.
+Content like display format rule data, models and tests are organized into projects in the Custom DPP. Each project is specific to a domain and locale. For example, you might create a project for call centers that use English in the United States.
 
 To create a project, run the following command:
 
@@ -44,18 +44,18 @@ If the command is succeeded, a project folder is created at the current director
 
 ## Prepare your data for Custom DPP model
 
-Features
-Custom DPP support three kinds of display format customization rules, *rewrite*, *profanity* and *itn*. The collection of the rule data files form a Custom DPP model. The scaffolding rules files of a project are in the `data` subfolder of the project. 
+Custom DPP supports three kinds of rules for display format customization, *rewrite*, *profanity* and *ITN*. The collection of the rule data files form a Custom DPP model. The scaffolding rule files of a project are in the `data` subfolder of the project folder. 
 
-* `data/itn.pat` - The pattern rules to build a Custom *ITN* model.
-* `data/rewrite.tsv` - The key value pair rules about how to *rewrite* one phrase to anther.
+* `data/itn.pat` - The pattern rules to build a custom *ITN* model.
+* `data/rewrite.tsv` - The key value pair rules about how to *rewrite* one phrase to another.
 * `data/profanity.tsv` - The collection of *profanity* words.
 
-Please see [Concepts](CONCEPTS.md) for more details about how to add/edit the custom rules. To opt out a feature for model
+Please see [Concepts](CONCEPTS.md) for more details about how to add/edit the custom rules, and [VS Code](https://code.visualstudio.com/) is recommended as the editor of the rule data files. 
 
-[VS Code](https://code.visualstudio.com/) is recommended as the editor of the rule data files. 
+> Note 
+> VS Code might convert the TAB char which required in *rewrite* rule file into spaces automatically. Please check the TAB setting in VS Code before editing the rule files, make sure the TAB char will NOT be converted. You may run `cdpp check` to check the grammars of the rule files and find this kind of issue if has any.
 
-Once the data rules of a Custom DPP model are ready, run following command to upload them to Microsoft Speech server.
+Once the rule files of a Custom DPP model are ready, run following command to upload them to Microsoft Speech server.
 
 > `cdpp push model`
 
