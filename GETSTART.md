@@ -1,7 +1,7 @@
 
 # Get start with Custom DPP CLI
 
-Custom DPP CLI is a command-line utility that you can upload, evaluate and deploy your custom display format rules which applied to the Microsoft Speech recognition results. This article helps you download Custom DPP CLI, and then go through a typical customization workflow step by step.
+Custom DPP CLI is a command-line utility that you can upload, evaluate, and deploy your custom display format rules which applied to the Microsoft Speech recognition results. This article helps you download Custom DPP CLI, and then go through a typical customization workflow step by step.
 
 ## Download Custom DPP CLI
 
@@ -35,7 +35,7 @@ To get started, you need an Azure subscription key and region identifier (for ex
 
 Content like display format rule data, models and tests are organized into projects in the Custom DPP. Each project is specific to a domain and locale. For example, you might create a project for call centers that use English in the United States.
 
-To create a project, run the following command:
+To create a project, run following command:
 
 > `cdpp init <project_name>`
 
@@ -43,7 +43,7 @@ Then, follow the prompt instructions to type in the locale name, region identifi
 If the command is succeeded, a project folder is created at the current directory you are running the command, and in the project folder, scaffolding rule files and test files are created.
 
 > Note
-> All the rest `cdpp` commands in this document should be run inside the project folder. You may use following command to enter the project folder.
+> All the rest `cdpp` commands in this document should be run inside the project folder. You may use the following command to enter the project folder.
 > `cd <project_name>`
 
 ## Prepare your data for Custom DPP model
@@ -73,7 +73,7 @@ Once the test set file is ready, run following command to upload it to Microsoft
 
 > `cdpp push test`
 
-To add another test set, you can just put the file under the `test` subfolder of a project. The [How To](HOWTO.md) article provides more details about hwo to work with an alternative test set.
+To add another test set, you can just put the file under the `test` subfolder of a project. Please see [How To](HOWTO.md) for more details about how to work with an alternative test set.
 
 ## Evaluate your Custom DPP model
 
@@ -81,126 +81,83 @@ To evaluate a Custom DPP model with the default `test/test.tsv` test set, after 
 
 > `cdpp eval`
 
-You may use follow command to check the status/progress of the the evaluation:
+You may use the following command to check the status/progress of the evaluation:
 
 > `cdpp get eval`
 
-To download the detail evaluation result, run following command:
+To download the detailed evaluation result, run following command:
 
 > `cdpp get eval -t`
 
-You can find the actual output for each test case in the downloaded evaluation result file.
+The downloaded file is saved in `/logs/eval/<test_name>/<yyyyMMddHHmmss>` folder. You can find the actual output for each test case in this file.
 
 ## Deploy your Custom DPP model
 
-To deploy the Custom DPP model
-To deploy the model to another region, you can use `cdpp config` to change the region and subscription key settings of the project, make the project setting points to another region, and then do the deployment for that region.
+Since a Custom DPP model needs to work with a Custom Speech model together in Microsoft Speech service, a Microsoft Custom Speech model identifier is required to deploy a Custom DPP model. 
+
+To deploy a Custom DPP model, run following command:
+
+> `cdpp deploy <custom_speech_model_id>`
+
+You may use the following command to check the status/progress of the deployment:
+
+> `cdpp get deploy <custom_speech_model_id>`
+
+If the deployment succeeded, the Custom DPP model will be tied to the given Custom Speech model.
+
+If the deployment fails, you may use following command to download the error logs:
+
+> `cdpp get deploy <custom_speech_model_id> -d`
+
+The downloaded error log files are saved in `/logs/deploy/<custom_speech_model_id>/<yyyyMMddHHmmss>` folder.
+
+To deploy the Custom DPP model to another region, you can use `cdpp config` to change the region and subscription key settings, make the project setting points to another region, and then do the deployment for that region.
+
+## Use your Custom DPP model
+
+### Speech SDK
+
+After the Custom DPP model is deployed, it can be consumed by Microsoft [Speech SDK](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-sdk). 
+
+The following C# code shows how to consume a Custom DPP model via the Speech SDK.
+
+```
+
+var subscriptionKey = "<the same subscription key using to deploy the Custom DPP model>"
+var region = "<the region identifier for the subscription key>"
+var speechModelId = "<your Custom Speech model id that tied to the Custom DPP model>
+
+var config = Microsoft.CognitiveServices.Speech.SpeechConfig.FromSubscription(subscriptionKey, region);
+config.SetServiceProperty("postprocessing", speechModelId, ServicePropertyChannel.UriQueryParameter)
+
+```
+
+### REST API
+
+To transcribe a large amount of audio in storage, you may want to use the [batch transcription REST API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/batch-transcription).
+
+To use a Custom DPP model with a Custom Speech model together in a batch transcription, you just need to deploy the Custom DPP model with the Custom Speech model identifier as the `cdpp deploy` command argument.
 
 ## Other useful commands
 
-To list all models, test sets, evaluation and deployment operations in the subscription, run the following command:
+To list all models, test sets, evaluation and deployment operations in the subscription, run following command:
 
 > `cdpp list [ model | test | eval | deploy ]`
 
-### Evaluate a Custom DPP model with another test set (put into how to)
+To fetch the data files of a model or test set from the Microsoft Speech server, run following command:
 
-To create another test set file under the `test` subfolder of a project as well. 
+> `cdpp fetch [ model | test ]`
 
-You may use the `-f` switch to specify what features should be applied to a test set. For example, if a test file (let's say `test/itn_test.tsv`) only has *ITN* related test cases, ????
+To delete the data files of a model or test set from the Microsoft Speech server, run following command:
 
-To upload another test file except the default `test/test.tsv`, put the file into the `test` subfolder of the project, then run following command:
+> `cdpp delete [ model | test ]`
 
-### terminate a evaluation (put how to)
- 
+To delete or abort an evaluation or deployment operation, run following command:
 
-> `cdpp push test -n <test_file_name_without_extension>`
-
-
-You may use the `-n` switch to specify an alternative test set for evaluation.
-
-> `cdpp eval -n <test_file_name_with_extension>`
+> `cdpp delete [ eval | deploy ]`
 
 ## Next steps
 
-* Learn the basic [Concepts](CONCEPTS.md) in Custom DPP
+* Learn the basic [Concepts](CONCEPTS.md) in Custom DPP.
 
-
-
-Inline help
-
-List of commands
-The following table lists all AzCopy v10 commands. Each command links to a reference article.
-
-Command	Description
-azcopy bench	Runs a performance benchmark by uploading or downloading test data to or from a specified location.
-azcopy copy	Copies source data to a destination location
-azcopy doc	Generates documentation for the tool in Markdown format.
-azcopy env	Shows the environment variables that can configure AzCopy's behavior.
-azcopy jobs	Subcommands related to managing jobs.
-azcopy jobs clean	Remove all log and plan files for all jobs.
-azcopy jobs list	Displays information on all jobs.
-azcopy jobs remove	Remove all files associated with the given job ID.
-azcopy jobs resume	Resumes the existing job with the given job ID.
-azcopy jobs show	Shows detailed information for the given job ID.
-azcopy load	Subcommands related to transferring data in specific formats.
-azcopy load clfs	Transfers local data into a Container and stores it in Microsoft's Avere Cloud FileSystem (CLFS) format.
-azcopy list	Lists the entities in a given resource.
-azcopy login	Logs in to Azure Active Directory to access Azure Storage resources.
-azcopy logout	Logs the user out and terminates access to Azure Storage resources.
-azcopy make	Creates a container or file share.
-azcopy remove	Delete blobs or files from an Azure storage account.
-azcopy sync	Replicates the source location to the destination location.
- Note
-
-AzCopy does not have a command to rename files.
-
-Use in a script
-Obtain a static download link
-Over time, the AzCopy download link will point to new versions of AzCopy. If your script downloads AzCopy, the script might stop working if a newer version of AzCopy modifies features that your script depends upon.
-
-To avoid these issues, obtain a static (unchanging) link to the current version of AzCopy. That way, your script downloads the same exact version of AzCopy each time that it runs.
-
-To obtain the link, run this command:
-
-Operating system	Command
-Linux	curl -s -D- https://aka.ms/downloadazcopy-v10-linux | grep ^Location
-Windows	(curl https://aka.ms/downloadazcopy-v10-windows -MaximumRedirection 0 -ErrorAction silentlycontinue).headers.location
- Note
-
-For Linux, --strip-components=1 on the tar command removes the top-level folder that contains the version name, and instead extracts the binary directly into the current folder. This allows the script to be updated with a new version of azcopy by only updating the wget URL.
-
-The URL appears in the output of this command. Your script can then download AzCopy by using that URL.
-
-Operating system	Command
-Linux	wget -O azcopy_v10.tar.gz https://aka.ms/downloadazcopy-v10-linux && tar -xf azcopy_v10.tar.gz --strip-components=1
-Windows	Invoke-WebRequest https://azcopyvnext.azureedge.net/release20190517/azcopy_windows_amd64_10.1.2.zip -OutFile azcopyv10.zip <<Unzip here>>
-Escape special characters in SAS tokens
-In batch files that have the .cmd extension, you'll have to escape the % characters that appear in SAS tokens. You can do that by adding an additional % character next to existing % characters in the SAS token string.
-
-Run scripts by using Jenkins
-If you plan to use Jenkins to run scripts, make sure to place the following command at the beginning of the script.
-
-
-Copy
-/usr/bin/keyctl new_session
-Use in Azure Storage Explorer
-Storage Explorer uses AzCopy to perform all of its data transfer operations. You can use Storage Explorer if you want to leverage the performance advantages of AzCopy, but you prefer to use a graphical user interface rather than the command line to interact with your files.
-
-Storage Explorer uses your account key to perform operations, so after you sign into Storage Explorer, you won't need to provide additional authorization credentials.
-
-
-Configure, optimize, and fix
-See any of the following resources:
-
-AzCopy configuration settings
-
-Optimize the performance of AzCopy
-
-Troubleshoot AzCopy V10 issues in Azure Storage by using log files
-
-Use a previous version
-If you need to use the previous version of AzCopy, see either of the following links:
-
-AzCopy on Windows (v8)
-
-AzCopy on Linux (v7)
+* See [How To](HOWTO.md) about more usages of the Custom DPP command CLI.
