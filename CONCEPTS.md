@@ -41,10 +41,16 @@ The Custom DPP service provides a set of REST API to create, evaluate, and deplo
 
 For ease of use, Custom DPP also includes a command line utility named Custom DPP CLI. The Custom DPP CLI interacts with Custom DPP service to upload the rules of a custom model, start an evaluation or deployment, etc..
 
-In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Profanity*, which define the corresponding custom models of the three customizable features.
+In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Profanity*, which define the corresponding custom models of the three customizable features, *Custom ITN*, *Rewrite* and *Custom Profanity*.
 
-## *INT* Rule
+## *INT* Rules
 
-## *Rewrite* Rule
+The rules to build a *Custom ITN* model.
 
-## *Profanity* Rule
+## *Rewrite* Rules
+
+The rules to define the behaviors of the *Rewrite* feature.
+
+## *Profanity* Rules
+
+The list of profanity words for the *Custom Profanity* feature.
