@@ -33,16 +33,18 @@ The order of features in the DPP pipeline is illustrated in below diagram.
 ![The features of DPP pipeline](PIPELINE.png)
 
 
-: Custom DPP model
-The collection of the custom model for *Custom ITN*, *Rewrite* and *Custom Profanity*.
-
 ## What's in Custom DPP?
 
 Custom DPP is a service and its corresponding tool set to allow customers to customize certain features of Microsoft DPP service.
 
+The Custom DPP service provides a set of REST API to create, evaluate, and deploy a Custom DPP model. A Custom DPP model is a collection of the custom models for *Custom ITN*, *Rewrite* and *Custom Profanity*.
 
-## *Rewrite* Rule
+For ease of use, Custom DPP also includes a command line utility named Custom DPP CLI. The Custom DPP CLI interacts with Custom DPP service to upload the rules of a custom model, start an evaluation or deployment, etc..
+
+In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Profanity*, which define the corresponding custom models of the three customizable features.
 
 ## *INT* Rule
+
+## *Rewrite* Rule
 
 ## *Profanity* Rule
