@@ -27,7 +27,7 @@ Masking or removal profanity words from a sentence. For example, assuming "abcd"
 Beside the base features maintained by Microsoft for the general purpose display processing tasks, the DPP pipeline also provides three customizable features to meet customers' domain specific requirements.
 
 *Custom ITN*   
-Extend the functionalities of base ITN, by applying a rule based ITN model from customer.
+Extend the functionalities of base ITN, by applying a rule based custom ITN model from customer.
 
 *Rewrite*  
 At the end of pipeline, rewrite one phrase to another based on a rule based model from customer, each rule in the model is a pair of phrases (old -> new).
@@ -52,13 +52,13 @@ In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Pr
 
 ## Custom ITN
 
-### How *Custom ITN* works?
+### How *Custom ITN* model works?
 
-Custom ITN works together with the base ITN feature provided by DPP service. In the DPP pipeline, the input lexical text will
-1. Go through the base ITN builder first, and the base model inside the builder will transduce the number related phrases to display forms. 
-2. Then, go through the Custom ITN builder, and the Custom ITN model inside the builder will match and transduce the input string to the desired format defined by the *ITN* rules of the model. The matching algorithm inside the Custom ITN model is case-insensitive.
+A *Custom ITN* model is composed by two parts, a mini base ITN model provided by Microsoft, and a custom model built from the *ITN* rules provided by customers.
 
-![Work flow of ITN plus Custom ITN](ITNCUSTOMITN.png)
+For a *input string*, 
+1. First, the mini base ITN model will transduce the number related phrases in the *input string* to display forms
+2. Then, for the output of the mini base ITN model, the custom model will match and transduce it to the desired format defined by the *ITN* rules of the model. The matching algorithm inside the Custom ITN model is case-insensitive.
 
 ### Rule Syntax
 
@@ -132,13 +132,16 @@ Sample: `"a k forty seven" -> "AK-47"`
 
 ## Rewrite
 
-### How *Rewrite* works?
+### How *Rewrite* model works?
 
-The *Rewrite* builder is at the end of the DPP pipeline.
+The *Rewrite* builder is at the end of the DPP pipeline. The model inside the builder is a collection of rewrite rules. For each input text,
+
+1. The *Rewrite* model tries to match 
 
 ### Rule Syntax
 
 The rules to define the behaviors of the *Rewrite* feature.
+A rewrite rule is a pair of two phrases (old -> new). 
 
 ### Examples
 
