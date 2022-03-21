@@ -20,9 +20,6 @@ For convenience, consider adding the directory location of the Custom DPP CLI ex
 
 If you choose not to add the Custom DPP CLI directory to your path, you'll have to change directories to the location of your Custom DPP CLI executable and type `cdpp` or `.\cdpp` in Windows PowerShell command prompts.
 
-
-https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
-
 ## Get command help
 
 To see a list of commands, type `cdpp -h` and then press the ENTER key.
@@ -42,9 +39,8 @@ To create a project, run following command:
 Then, follow the prompt instructions to type in the locale name, region identifier and the Azure subscription key. 
 If the command is succeeded, a project folder is created at the current directory you are running the command, and in the project folder, scaffolding rule files and test files are created.
 
-> Note
-> All the rest `cdpp` commands in this document should be run inside the project folder. You may use the following command to enter the project folder.
-> `cd <project_name>`
+> Note <br/>
+All the rest `cdpp` commands in this document should be run inside the project folder. You may use `cd <project_name>` to enter the project folder.
 
 ## Prepare your data for Custom DPP model
 
@@ -56,8 +52,7 @@ Custom DPP provides three kinds of features for display format customization, *r
 
 Please see [Concepts](CONCEPTS.md) for more details about how to add/edit the custom rules, and [VS Code](https://code.visualstudio.com/) is recommended as the editor of the rule data files. 
 
-> Note 
-> VS Code might convert the TAB char which required in *rewrite* rule file into spaces automatically. Please check the TAB setting in VS Code before editing the rule files, make sure the TAB char will NOT be converted. You may run `cdpp check` to check the grammars of the rule files and find this kind of issue if has any.
+> Note <br/> VS Code might convert the TAB char which required in *rewrite* rule file into spaces automatically. Please check the TAB setting in VS Code before editing the rule files, make sure the TAB char will NOT be converted. You may run `cdpp check` to check the grammars of the rule files and find this kind of issue if has any.
 
 Once the rule files of a Custom DPP model are ready, run following command to upload them to Microsoft Speech server.
 
