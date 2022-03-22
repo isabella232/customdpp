@@ -53,7 +53,7 @@ To see a list of commands, type `cdpp -h` and then press the ENTER key.
 
 To learn about a specific command, just include the name of the command (For example: `cdpp push -h`).
 
-![cdpp command help example](pics/CLI.png)
+![cdpp command help example](pics/CLI.jpg)
 
 If you choose not to add Custom DPP CLI to your path, you'll have to change directories to the location of your `cdpp` executable and type `cdpp` or `.\cdpp` in Windows PowerShell command prompts.
 

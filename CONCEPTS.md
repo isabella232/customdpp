@@ -4,7 +4,7 @@
 
 Microsoft Speech service can be viewed as two components, speech recognition (SR) and display post processing (DPP). SR service transcripts audio to lexical text, and DPP service transforms the lexical text to display text.
 
-![The relationship of SR and DPP](pics/SRDPP.png)
+![The relationship of SR and DPP](pics/SRDPP.jpg)
 
 ### DPP pipeline and its builders
 
@@ -39,7 +39,7 @@ Perform profanity handling based on the profanity word list from customer.
 
 The order of builders in the DPP pipeline is illustrated in below diagram.
 
-![The builders of DPP pipeline](pics/PIPELINE.png)
+![The builders of DPP pipeline](pics/PIPELINE.jpg)
 
 ### DPP *features*
 
