@@ -19,9 +19,9 @@ Supported locales:
 
 Supported service region: 
 
-:white_check_mark: westus :white_check_mark: westus2 :white_check_mark: eastus :white_check_mark: eastus2 :white_check_mark: japaneast
+:white_check_mark: West US :white_check_mark: West US2 :white_check_mark: East US :white_check_mark: East US2 :white_check_mark: Central US
 
-:white_check_mark: centralindia :white_check_mark: northeurope :white_check_mark: westeurope :white_check_mark: eastasia
+:white_check_mark: Central India :white_check_mark: North Europe :white_check_mark: West Europe :white_check_mark: East Asia :white_check_mark: Japan East
 
 ## Download
 
@@ -65,7 +65,7 @@ See the [Concept](CONCEPTS.md) document about the basic concepts of Microsoft di
 
 ## Frequently asked questions
 
-### How to observe the default behaviors of the display post processing in Microsoft Speech service?
+### How to observe the default behaviors of the DPP service?
 
 See [How to](HOWTO.md) guide about the detail information.
 
