@@ -86,6 +86,9 @@ To download the detailed evaluation result, run following command:
 
 The downloaded file is saved in `/logs/eval/<test_name>/<yyyyMMddHHmmss>` folder. You can find the actual output for each test case in this file.
 
+
+To terminate an evaluation if it takes too long time, see [Terminate an evaluation](Howto.md#terminate-an-evaluation).
+
 ## Deploy your Custom DPP model
 
 Since a Custom DPP model needs to work with a Custom Speech model together in Microsoft Speech service, a Microsoft Custom Speech model identifier is required to deploy a Custom DPP model. 

@@ -1,17 +1,46 @@
-### Evaluate a Custom DPP model with another test set (put into how to)
+# How To
 
-To create another test set file under the `test` subfolder of a project as well. 
+## Evaluate a Custom DPP model with another test set
 
-You may use the `-f` switch to specify what features should be applied to a test set. For example, if a test file (let's say `test/itn_test.tsv`) only has *ITN* related test cases, ????
+Assume you are creating a new test set named `entity` in a project, 
 
-To upload another test file except the default `test/test.tsv`, put the file into the `test` subfolder of the project, then run following command:
+1. Create the test set file named `entity.tsv` under the `test` subfolder of the project 
 
-### terminate a evaluation (put how to)
- 
+2. Add test cases into `entity.tsv` and use following command to upload the file.
+`cdpp push test -n entity`
 
-> `cdpp push test -n <test_file_name_without_extension>`
+3. Use following command to start an evaluation on the `entity.tsv` file:
+`cdpp eval -n entity`
 
 
-You may use the `-n` switch to specify an alternative test set for evaluation.
+You may use the `-f` switch in `cdpp push test` command to specify what features should be applied to the test set.
 
-> `cdpp eval -n <test_file_name_with_extension>`
+
+## Terminate an evaluation
+
+An evaluation might take too long time to execute. To abort an evaluation on the default test set, use following command:
+
+> `cdpp delete eval`
+
+To abort an evaluation on another test set (say `entity`), use following command:
+
+> `cdpp delete eval -n entity`
+
+
+## Observe the default behaviors of DPP service
+
+To observe the default behaviors of DPP service, 
+
+1. Create a new project with empty model files.
+
+2. Upload the empty model files to Microsoft Speech server by `cdpp push model`.
+
+3. Edit the `test/test.tsv`, add the test cases you want to test on the default behaviors.
+
+4. Upload the test file by `cdpp push test`.
+
+5. Start an evaluation by `cdpp eval`.
+
+6. Use `cdpp get eval -t` to get the logs.
+
+The downloaded logs has the output of each test case from DPP service without custom models.

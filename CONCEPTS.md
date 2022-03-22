@@ -6,11 +6,13 @@ Microsoft Speech service can be viewed as two components, speech recognition (SR
 
 ![The relationship of SR and DPP](pics/SRDPP.png)
 
-The DPP service is essential a display post processing pipeline. The display post processing pipeline is composed by a sequence of display format builders. Each builder corresponds to a display format feature, such as *ITN*, *capitalization*, and *profanity masking/removal*, etc..
+### DPP pipeline and its builders
+
+The DPP service is essential a display post processing pipeline. The display post processing pipeline is composed by a sequence of display format builders. Each builder corresponds to a display format tasks, such as *ITN*, *capitalization*, and *profanity masking/removal*, etc..
 
 *Inverse Text Normalization (ITN)*  
 
-A feature to convert the text of spoken form numbers to display form. For example, 
+To convert the text of spoken form numbers to display form. For example, 
 > `"I spend twenty dollars" -> "I spend $20"`
 
 *Capitalization*  
@@ -24,7 +26,7 @@ Masking or removal profanity words from a sentence. For example, assuming "abcd"
 
 > `"I never say abcd" -> "I never say ****"`
 
-Beside the base features maintained by Microsoft for the general purpose display processing tasks, the DPP pipeline also provides three customizable features to meet customers' domain specific requirements.
+Beside the base builders maintained by Microsoft for the general purpose display processing tasks, the DPP pipeline also provides three customizable builders to meet customers' domain specific requirements.
 
 *Custom ITN*   
 Extend the functionalities of base ITN, by applying a rule based custom ITN model from customer.
@@ -35,19 +37,25 @@ At the end of pipeline, rewrite one phrase to another based on a rule based mode
 *Custom Profanity*  
 Perform profanity handling based on the profanity word list from customer.
 
-The order of features in the DPP pipeline is illustrated in below diagram.
+The order of builders in the DPP pipeline is illustrated in below diagram.
 
-![The features of DPP pipeline](pics/PIPELINE.png)
+![The builders of DPP pipeline](pics/PIPELINE.png)
+
+### DPP *features*
+
+The term *feature* stands for a behavior of DPP builders. Usually, a DPP builder has a corresponding DPP *feature* which has the same name as the builder, but for profanity builder, it has two features - "profanity masking" and "profanity removal".
+
+DPP service supports turn on/off a *feature* in a speech recognition request.
 
 ## What's in Custom DPP?
 
-Custom DPP is a service and a tool set to allow customers to customize certain features of Microsoft DPP service.
+Custom DPP is a service and a tool set to allow customers to customize certain builders of Microsoft DPP service.
 
 The Custom DPP service provides a set of REST API to create, evaluate, and deploy a Custom DPP model. A Custom DPP model is a collection of the custom models for *Custom ITN*, *Rewrite* and *Custom Profanity*.
 
-For ease of use, Custom DPP also includes a command line utility named Custom DPP CLI. The Custom DPP CLI interacts with Custom DPP service to upload the rules of a custom model, start an evaluation or deployment, etc..
+For ease of use, Custom DPP also includes a command line utility named Custom DPP CLI. The Custom DPP CLI interacts with Custom DPP service to upload the rules of a custom model, start a model evaluation or model deployment, etc..
 
-In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Profanity*, which define the corresponding custom models of the three customizable features, *Custom ITN*, *Rewrite* and *Custom Profanity*.
+In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Profanity*, which define the corresponding custom models of the three customizable builders, *Custom ITN*, *Rewrite* and *Custom Profanity*.
 
 
 ## Custom ITN
@@ -60,7 +68,7 @@ For a *input string*,
 1. First, the mini base ITN model will transduce the number related phrases in the *input string* to display forms.
 2. Then, for the output of the mini base ITN model, the custom model will match and transduce it to the desired format defined by the *ITN* rules of the model. The matching algorithm inside the *Custom ITN* model is case-insensitive.
 
-### Rule Syntax
+### Rule syntax
 
 A *Custom ITN* model is built from a set of *ITN* rules. An *ITN* rule is a regular expression like pattern string which describes 
 
@@ -132,27 +140,17 @@ Sample: `"a k forty seven" -> "AK-47"`
 
 ### How *Rewrite* model works?
 
-The *Rewrite* builder is at the end of the DPP pipeline. So, the output of the builder is the final result of DPP pipeline. 
+A *Rewrite* model is a collection of rewrite rules. A rewrite rule is a pair of two phrases `old phrase -> new phrase`. 
 
-A *Rewrite* model inside the builder is a collection of rewrite rules. A rewrite rule is a pair of two phrases `(old phrase -> new phrase)`. 
-
-For an input text, the *Rewrite* model will apply all the rules to the input text, and for each rule, it will replace all occurrences of the old phrase in the text with the new phrase.
-
-```
-rewrite(string text)
-{
-	foreach rule in *Rewrite* model:
-		replace rule.old_phrase with rule.new_phrase for every occurrences in the text
-}
-```
+General speaking, for an input string, *Rewrite* model will try to replace the `old phrase` in the input string with the corresponding `new phrase` for each rewrite rule.
 
 > Note <br/>
-The matching algorithm is case insensitive and uses a greedy policy, so, if two rewrite rules conflict, the one with longer old phrase will take effect.
+The matching algorithm is case insensitive and uses a greedy policy, so, if two rewrite rules conflict, the one with longer `old phrase` will take effect.
 
 > Note <br/>
 The *Rewrite* model supports grammar capitalization, which will capitalize the first letter of a sentence for en-us like locales. It will be turned off if the *Capitalization* feature of DPP is turned off in a speech recognition request.
 
-### Rule Syntax
+### Rule syntax
 
 > `old phrase -> new phrase`,  *the ` -> ` stands for TAB character*.
 
@@ -176,9 +174,9 @@ So, the following punctuations are grammar punctuations if they are followed by 
 
 > `. , ? 、 ! : ; ？ 。 ， ¿ ¡ । ؟ ، ` 
 
-However, if the punctuations are in the middle of a word (except Chinese or Japanese word), they are not grammar punctuation any more. Now, they are just simple characters.
+However, if the punctuations are in the middle of a word (except a Chinese or Japanese word), they are not grammar punctuations any more. Now, they are just simple characters.
 
-In zh-cn, ja-jp, the above punctuations are always grammar punctuations even if they are between Chinese or Japanese characters, since they are non-spacing locales.
+In zh-cn, ja-jp, the above punctuations are always grammar punctuations even if they are between Chinese or Japanese characters, since zh-cn and ja-jp are non-spacing locales.
 
 For example:
 
@@ -207,11 +205,17 @@ Sample: `"gottfried leibniz was a mathematician" -> "Gottfried Leibniz was a mat
 
 ### How *Custom Profanity* model works?
 
-A *Custom Profanity* model acts the same as the base *Profanity* model, except it uses a custom profanity word list.
+A *Custom Profanity* model acts the same as the base *Profanity* model, except it uses a custom profanity phrase list.
 
-Based on the DPP feature parameter (*profanityRemoval*/*profanityMasking*) of a speech recognition request, the *Custom Profanity* model will remove or mask the profanity words defined in the model.
+For an input string, 
+1. The *Custom Profanity* model will try to match (case insensitive) all the profanity phrases defined in the model.
+2. Then, the *Custom Profanity* builder will remove or mask the matched profanity phrases based on the *feature* parameter (*profanityRemoval*/*profanityMasking*) of the speech recognition request.
 
-### Rule Syntax
+> Note <br/>
+The matching algorithm is case insensitive and uses a greedy policy, so, if two profanity phrases conflict, the longer one will take effect.
+
+
+### Rule syntax
 
 > `profanity phrase`
 

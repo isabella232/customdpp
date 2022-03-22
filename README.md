@@ -65,10 +65,6 @@ See the [Concept](CONCEPTS.md) document about the basic concepts of Microsoft di
 
 ## Frequently asked questions
 
-### How to observe the default behaviors of the DPP service?
-
-See [How to](HOWTO.md) guide about the detail information.
-
 ### Do we support Bring Your Own Storage?
 
 Not yet. We will add the bring your own storage in public preview.
