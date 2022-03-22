@@ -4,7 +4,7 @@
 
 Microsoft Speech service can be viewed as two components, speech recognition (SR) and display post processing (DPP). SR service transcripts audio to lexical text, and DPP service transforms the lexical text to display text.
 
-![The relationship of SR and DPP](SRDPP.png)
+![The relationship of SR and DPP](pics/SRDPP.png)
 
 The DPP service is essential a display post processing pipeline. The display post processing pipeline is composed by a sequence of display format builders. Each builder corresponds to a display format feature, such as *ITN*, *capitalization*, and *profanity masking/removal*, etc..
 
@@ -20,7 +20,7 @@ To upper case entity names, acronyms, or the first letter of a sentence. For exa
 
 *Profanity Masking/Removal*  
 
-Masking or removal profanity words from a sentence. For example, assuming "abcd" is a profanity word, then by profanity masking, 
+Masking or removal profanity words from a sentence. For example, assuming "abcd" is a profanity word, then the word will be masked by profanity masking, 
 
 > `"I never say abcd" -> "I never say ****"`
 
@@ -37,7 +37,7 @@ Perform profanity handling based on the profanity word list from customer.
 
 The order of features in the DPP pipeline is illustrated in below diagram.
 
-![The features of DPP pipeline](PIPELINE.png)
+![The features of DPP pipeline](pics/PIPELINE.png)
 
 ## What's in Custom DPP?
 
@@ -54,20 +54,18 @@ In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Pr
 
 ### How *Custom ITN* model works?
 
-A *Custom ITN* model is composed by two parts, a mini base ITN model provided by Microsoft, and a custom model built from the *ITN* rules provided by customers.
+A *Custom ITN* model is composed by two parts, a mini base ITN model provided by Microsoft, and a custom model built from the custom *ITN* rules.
 
 For a *input string*, 
-1. First, the mini base ITN model will transduce the number related phrases in the *input string* to display forms
-2. Then, for the output of the mini base ITN model, the custom model will match and transduce it to the desired format defined by the *ITN* rules of the model. The matching algorithm inside the Custom ITN model is case-insensitive.
+1. First, the mini base ITN model will transduce the number related phrases in the *input string* to display forms.
+2. Then, for the output of the mini base ITN model, the custom model will match and transduce it to the desired format defined by the *ITN* rules of the model. The matching algorithm inside the *Custom ITN* model is case-insensitive.
 
 ### Rule Syntax
 
 A *Custom ITN* model is built from a set of *ITN* rules. An *ITN* rule is a regular expression like pattern string which describes 
 
-- A matching pattern of the input string
-- The desired format of the output string
-
-![ITN rule, match + transduce](ITNRULE.png)
+* A matching pattern of the input string
+* The desired format of the output string
 
 > Note <br/>
 In private preview, Custom ITN only supports on en-us.
@@ -78,7 +76,7 @@ The string that a *ITN* rule is trying to match and transduce.
 
 #### Output string
 
-The display format string which is transduced by a *ITN* rule from the input string.
+The display format string which is transduced by *ITN* rules from the input string.
 
 #### Atoms in an *ITN* rule
 
@@ -115,7 +113,7 @@ To group 6 digits into 2 groups and add a '-' char between them:
 > *ITN* rule: `\d\d\d-\d\d\d` <br/>
 Sample: `"cadence one oh five one fifteen" -> "cadence 105-115"`
 
-#### Format an film name
+#### Format a film name
 
 *Space: 1999* is a famous film, to support it:
 
@@ -134,25 +132,105 @@ Sample: `"a k forty seven" -> "AK-47"`
 
 ### How *Rewrite* model works?
 
-The *Rewrite* builder is at the end of the DPP pipeline. The model inside the builder is a collection of rewrite rules. For each input text,
+The *Rewrite* builder is at the end of the DPP pipeline. So, the output of the builder is the final result of DPP pipeline. 
 
-1. The *Rewrite* model tries to match 
+A *Rewrite* model inside the builder is a collection of rewrite rules. A rewrite rule is a pair of two phrases `(old phrase -> new phrase)`. 
+
+For an input text, the *Rewrite* model will apply all the rules to the input text, and for each rule, it will replace all occurrences of the old phrase in the text with the new phrase.
+
+```
+rewrite(string text)
+{
+	foreach rule in *Rewrite* model:
+		replace rule.old_phrase with rule.new_phrase for every occurrences in the text
+}
+```
+
+> Note <br/>
+The matching algorithm is case insensitive and uses a greedy policy, so, if two rewrite rules conflict, the one with longer old phrase will take effect.
+
+> Note <br/>
+The *Rewrite* model supports grammar capitalization, which will capitalize the first letter of a sentence for en-us like locales. It will be turned off if the *Capitalization* feature of DPP is turned off in a speech recognition request.
 
 ### Rule Syntax
 
-The rules to define the behaviors of the *Rewrite* feature.
-A rewrite rule is a pair of two phrases (old -> new). 
+> `old phrase -> new phrase`,  *the ` -> ` stands for TAB character*.
+
+* A rewrite rule is a pair of two phrases, the old phrase and the new phrase. 
+* The two phrases are separated by a TAB character. 
+* The old phrase will be matched (case-insensitive) and replaced with the new phrase. 
+
+#### Old phrase
+
+The phrase to be matched and replaced. An old phrase is case-insensitive, and [grammar punctuations](#grammar-punctuation) in an old phrase are ignored during match.  
+
+#### New phrase
+
+The phrase to replace the old phrase. A new phrase is case sensitive.
+
+#### Grammar Punctuation
+
+Grammar punctuations are used to separate a sentence or phrase, and clarify how a sentence or phrase should be read.
+
+So, the following punctuations are grammar punctuations if they are followed by space or at the begin or end of a sentence or phrase.
+
+> `. , ? 、 ! : ; ？ 。 ， ¿ ¡ । ؟ ، ` 
+
+However, if the punctuations are in the middle of a word (except Chinese or Japanese word), they are not grammar punctuation any more. Now, they are just simple characters.
+
+In zh-cn, ja-jp, the above punctuations are always grammar punctuations even if they are between Chinese or Japanese characters, since they are non-spacing locales.
+
+For example:
+
+* `x, y`: The `','` is a grammar punctuation
+* `x.y`: The `'.'` is not a grammar punctuation
+* `中.文`: The `'.'` is a grammar punctuation
 
 ### Examples
+
+#### Spelling correction
+
+The name 'CVOID-19' sometimes was recognized as 'covered 19', to correct it:
+
+> *Reform* rule: `covered 19	COVID-19`  
+Sample: `"covered 19 is a virus" -> "COVID-19 is a virus"`
+
+#### Name capitalization
+
+Gottfried Wilhelm Leibniz was a German mathematician. To make his name displays correctly:
+
+> *Reform* rule: `gottfried leibniz	Gottfried Leibniz`  
+Sample: `"gottfried leibniz was a mathematician" -> "Gottfried Leibniz was a mathematician"`
+
 
 ## Custom Profanity
 
-The list of profanity words for the *Custom Profanity* feature.
+### How *Custom Profanity* model works?
 
-### How *Custom Profanity* works?
+A *Custom Profanity* model acts the same as the base *Profanity* model, except it uses a custom profanity word list.
+
+Based on the DPP feature parameter (*profanityRemoval*/*profanityMasking*) of a speech recognition request, the *Custom Profanity* model will remove or mask the profanity words defined in the model.
 
 ### Rule Syntax
 
-The rules to define the behaviors of the *Rewrite* feature.
+> `profanity phrase`
+
+* A custom profanity rule is simply a case insensitive phrase.
+* The following punctuations are not supported in a profanity phrase.  
+`. , ? 、 ! : ; ？ 。 ， ¿ ¡ । ؟ ، ` 
 
 ### Examples
+
+#### Single profanity word
+
+Assume `xyz` is a profanity word, to add it:
+
+> *Profanity* rule: `xyz`  
+Sample: `Turned on profanity masking to mask xyz -> Turned on profanity masking to mask ***`
+
+#### Profanity phrase
+
+Assume `abc lmn` is a profanity phrase, to add it:
+
+> *Profanity* rule: `abc lmn`  
+Sample: `Turned on profanity masking to mask abc lmn -> Turned on profanity masking to mask *** ***`

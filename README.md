@@ -25,7 +25,7 @@ Supported service region:
 
 ## Download
 
-The latest binary for cdpp along with installation instructions may be found [here](https://github.com/microsoft/customdpp/download).
+The latest binary for Custom DPP CLI along with installation instructions may be found [here](GETSTART.md#download-custom-dpp-cli).
 
 ## Supported Operations
 
@@ -47,28 +47,28 @@ Available Commands:
 
 ## Find help from your command prompt
 
-For convenience, consider adding the AzCopy directory location to your system path for ease of use. That way you can type `azcopy` from any directory on your system.
+For convenience, consider adding the Custom DPP CLI location to your system path for ease of use. That way you can type `cdpp` from any directory on your system.
 
-To see a list of commands, type `azcopy -h` and then press the ENTER key.
+To see a list of commands, type `cdpp -h` and then press the ENTER key.
 
-To learn about a specific command, just include the name of the command (For example: `azcopy list -h`).
+To learn about a specific command, just include the name of the command (For example: `cdpp push -h`).
 
-![AzCopy command help example](readme-command-prompt.png)
+![cdpp command help example](pics/CLI.png)
 
-If you choose not to add AzCopy to your path, you'll have to change directories to the location of your AzCopy executable and type `azcopy` or `.\azcopy` in Windows PowerShell command prompts.
+If you choose not to add Custom DPP CLI to your path, you'll have to change directories to the location of your `cdpp` executable and type `cdpp` or `.\cdpp` in Windows PowerShell command prompts.
+
+## Get start with Custom DPP CLI
+
+See the [Get Start](GETSTART.md) document about how to create use the CLI to upload, evaluate, and deploy your custom display format models.
+
+See the [Concept](CONCEPTS.md) document about the basic concepts of Microsoft display post processing.
 
 ## Frequently asked questions
 
 ### How to observe the default behaviors of the display post processing in Microsoft Speech service?
 
-* The `copy` command is a simple transferring operation. It scans/enumerates the source and attempts to transfer every single file/blob present on the source to the destination.
-  The supported source/destination pairs are listed in the help message of the tool.
-
-* On the other hand, `sync` scans/enumerates both the source, and the destination to find the incremental change.
-  It makes sure that whatever is present in the source will be replicated to the destination. For `sync`,
-
-* If your goal is to simply move some files, then `copy` is definitely the right command, since it offers much better performance.
-  If the use case is to incrementally transfer data (files present only on source) then `sync` is the better choice, since only the modified/missing files will be transferred.
-  Since `sync` enumerates both source and destination to find the incremental change, it is relatively slower as compared to `copy`
+See [How to](HOWTO.md) guide about the detail information.
 
 ### Do we support Bring Your Own Storage?
+
+Not yet. We will add the bring your own storage in public preview.
