@@ -1,14 +1,15 @@
-# Custom Display Post Processing CLI
+# Custom Display-Post-Processor (aka "Custom DPP")
 
 ## Overview
 
-The Custom Display Post Processing (DPP) command-line utility presents easy-to-use commands for display format customization of Microsoft Speech service.
-
-Supported on Windows, macOS and several Linux flavors.
+Automatic Speech Recognition output display format is critical to downstream tasks and one-size doesn’t fit all. Custom Display-Post-Processor (aka "Custom DPP") allows users to define their own speech recognition display formats to improve the quality on top of Mirosoft [Azure Custom Speech Service](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview).
 
 ## Features and capabilities
 
-The Custom DPP CLI enable the customers to rewrite the display text output by Microsoft Speech service. Moreover, it provides the Invert Text Normalization (ITN) rules and profanity words customizations for many domain specific scenarios.
+### Supported features
+* Rewrite capitalization & reformulation rules
+* Add new profanity words to filter out from output
+* Edit advanced ITN rules (invert-text-normalization, supports on en-us only)
 
 ### Supported locales
 
@@ -20,11 +21,13 @@ The Custom DPP CLI enable the customers to rewrite the display text output by Mi
 
 :white_check_mark: West US :white_check_mark: West US2 :white_check_mark: East US :white_check_mark: East US2 :white_check_mark: Central US
 
-:white_check_mark: Central India :white_check_mark: North Europe :white_check_mark: West Europe :white_check_mark: East Asia :white_check_mark: Japan East
+:white_check_mark: Central India :white_check_mark: North Europe :white_check_mark: West Europe :white_check_mark: East Asia :white_check_mark: Japan East :white_check_mark: Southeast Asia
 
-## Download
+## Get start with Custom DPP CLI
 
-The latest binary for Custom DPP CLI along with installation instructions may be found [here](GETSTART.md#download-custom-dpp-cli).
+See the [Get Start](GETSTART.md) document about how to download and use the CLI tool to upload, evaluate, and deploy your custom display format models.
+
+See the [Concept](CONCEPTS.md) document about the basic concepts of Microsoft display post processing.
 
 ## Supported operations
 
@@ -56,11 +59,6 @@ To learn about a specific command, just include the name of the command (For exa
 
 If you choose not to add Custom DPP CLI to your path, you'll have to change directories to the location of your `cdpp` executable and type `cdpp` or `.\cdpp` in Windows PowerShell command prompts.
 
-## Get start with Custom DPP CLI
-
-See the [Get Start](GETSTART.md) document about how to create use the CLI to upload, evaluate, and deploy your custom display format models.
-
-See the [Concept](CONCEPTS.md) document about the basic concepts of Microsoft display post processing.
 
 ## Frequently asked questions
 
