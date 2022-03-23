@@ -9,8 +9,8 @@ Automatic Speech Recognition output display format is critical to downstream tas
 ## Features and capabilities
 
 ### Supported features
-* Add **rewrite** rules to adjust capitalizations & reformulations of certain words;
-* Add **profanity** rules to mask certain words from output;
+* Add **rewrite** rules to replace certain phrases from output with others;
+* Add **profanity** rules to mask or remove certain words from output;
 * Add advanced **invert-text-normalization** rules to format with certain display patterns (supports on en-us only).
 
 ### Supported locales
@@ -21,9 +21,9 @@ Automatic Speech Recognition output display format is critical to downstream tas
 
 ### Supported service regions
 
-:white_check_mark: West US :white_check_mark: West US2 :white_check_mark: East US :white_check_mark: East US2 :white_check_mark: Central US
+:white_check_mark: West US :white_check_mark: West US2 :white_check_mark: East US :white_check_mark: East US2 :white_check_mark: Central US :white_check_mark: Central India
 
-:white_check_mark: Central India :white_check_mark: North Europe :white_check_mark: West Europe :white_check_mark: East Asia :white_check_mark: Japan East :white_check_mark: Southeast Asia
+:white_check_mark: North Europe :white_check_mark: West Europe :white_check_mark: East Asia :white_check_mark: Japan East :white_check_mark: Southeast Asia
 
 ## Get start with Custom DPP CLI
 
