@@ -52,7 +52,7 @@ Custom DPP provides three kinds of features for display format customization, *r
 
 Please see [Concepts](CONCEPTS.md) for more details about how to add/edit the custom rules, and [VS Code](https://code.visualstudio.com/) is recommended as the editor of the rule data files. 
 
-> Note <br/> VS Code might convert the TAB char which required in *rewrite* rule file into spaces automatically. Please check the TAB setting in VS Code before editing the rule files, make sure the TAB char will NOT be converted. You may run `cdpp check` to check the grammars of the rule files and find this kind of issue if has any.
+> Note <br/> VS Code might convert the TAB char which required in *rewrite* rule file into spaces automatically. Please check the TAB setting in VS Code before editing the rule files, make sure the TAB char will NOT be converted. You may run `cdpp check` to check the grammars of the rule files and find this kind of issue.
 
 Once the rule files of a Custom DPP model are ready, run following command to upload them to Microsoft Speech server.
 

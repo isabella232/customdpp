@@ -223,6 +223,9 @@ The matching algorithm is case insensitive and uses a greedy policy, so, if two 
 * The following punctuations are not supported in a profanity phrase.  
 `. , ? 、 ! : ; ？ 。 ， ¿ ¡ । ؟ ، ` 
 
+> Note <br/>
+In zh-cn and ja-jp, English profanity phrases are not supported. Instead, English profanity word or zh-cn/ja-jp profanity phrase are supported.
+
 ### Examples
 
 #### Single profanity word
