@@ -7,7 +7,7 @@ Custom DPP CLI is a command-line utility that you can upload, evaluate, and depl
 
 First, download the Custom DPP CLI executable file (`cdpp`) to any directory on your computer. Custom DPP CLI is just an executable file, so there's nothing to install.
 
-* Windows 64-bit (zip)
+* [Windows 64-bit (zip)](bins/cdpp_win_1.0.zip)
 * [macOS (zip)](bins/cdpp_mac_1.0.zip)
 
 These files are compressed as a zip file (Windows and Mac) or a tar file (Linux). To download and decompress the tar file on Linux, see the documentation for your Linux distribution.
