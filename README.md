@@ -9,9 +9,9 @@ Automatic Speech Recognition output display format is critical to downstream tas
 ## Features and capabilities
 
 ### Supported features
-* Rewrite the final output of Microsoft ASR
-* Add new profanity words to filter out from output
-* Edit advanced ITN rules (invert-text-normalization, supports on en-us only)
+* Add **rewrite** rules to adjust capitalizations & reformulations of certain words;
+* Add **profanity** rules to mask certain words from output;
+* Add advanced **invert-text-normalization** rules to format with certain display patterns (supports on en-us only).
 
 ### Supported locales
 
