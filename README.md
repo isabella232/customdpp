@@ -10,14 +10,13 @@ Supported on Windows, macOS and several Linux flavors.
 
 The Custom DPP CLI enable the customers to rewrite the display text output by Microsoft Speech service. Moreover, it provides the Invert Text Normalization (ITN) rules and profanity words customizations for many domain specific scenarios.
 
-
-Supported locales:
+### Supported locales
 
 :white_check_mark: en-us :white_check_mark: pt-br :white_check_mark: pt-pt :white_check_mark: it-it :white_check_mark: es-es 
 
 :white_check_mark: es-mx :white_check_mark: fr-fr :white_check_mark: fr-ca :white_check_mark: zh-cn :white_check_mark: ja-jp 
 
-Supported service region: 
+### Supported service regions
 
 :white_check_mark: West US :white_check_mark: West US2 :white_check_mark: East US :white_check_mark: East US2 :white_check_mark: Central US
 
@@ -27,7 +26,7 @@ Supported service region:
 
 The latest binary for Custom DPP CLI along with installation instructions may be found [here](GETSTART.md#download-custom-dpp-cli).
 
-## Supported Operations
+## Supported operations
 
 The general format of Custom DPP CLI commands is: `cdpp [command] [arguments] --[flag-name] [flag-value]`
 
