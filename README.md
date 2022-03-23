@@ -2,12 +2,14 @@
 
 ## Overview
 
-Automatic Speech Recognition output display format is critical to downstream tasks and one-size doesn’t fit all. Custom Display-Post-Processor (aka "Custom DPP") allows users to define their own speech recognition display formats to improve the quality on top of Mirosoft [Azure Custom Speech Service](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview).
+Automatic Speech Recognition output display format is critical to downstream tasks and one-size doesn’t fit all. Custom Display-Post-Processor (aka "Custom DPP") allows users to define their own speech recognition display formats to improve the quality on top of Microsoft [Azure Custom Speech Service](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview).
+
+![cdpp demo](pics/CDPP.jpg)
 
 ## Features and capabilities
 
 ### Supported features
-* Rewrite capitalization & reformulation rules
+* Rewrite the final output of Microsoft ASR
 * Add new profanity words to filter out from output
 * Edit advanced ITN rules (invert-text-normalization, supports on en-us only)
 
