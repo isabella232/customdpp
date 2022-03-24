@@ -1,8 +1,8 @@
-# Custom Display-Post-Processor (aka "Custom DPP") -- Private Preview Version
+# Custom Display-Post-Processing Private Preview
 
 ## Overview
 
-Automatic Speech Recognition output display format is critical to downstream tasks and one-size doesn’t fit all. Custom Display-Post-Processor (aka "Custom DPP") allows users to define their own lexical-to-display format rules to improve the speech recognition service quality on top of [Microsoft Azure Custom Speech Service](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview).
+Automatic Speech Recognition output display format is critical to downstream tasks and one-size doesn’t fit all. Custom Display-Post-Processing (aka "Custom DPP") allows users to define their own lexical-to-display format rules to improve the speech recognition service quality on top of [Microsoft Azure Custom Speech Service](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview).
 
 ![cdpp demo](pics/CDPP.jpg)
 
@@ -27,11 +27,13 @@ Automatic Speech Recognition output display format is critical to downstream tas
 
 ## Get start with Custom DPP CLI
 
+The Custom DPP command-line utility presents easy-to-use commands for display format customization.
+
 See the [Get Start](GETSTART.md) document about how to download and use the CLI tool to upload, evaluate, and deploy your custom display format models.
 
 See the [Concept](CONCEPTS.md) document about the basic concepts of Microsoft display post processing.
 
-## Supported operations
+### Supported operations
 
 The general format of Custom DPP CLI commands is: `cdpp [command] [arguments] --[flag-name] [flag-value]`
 
@@ -49,7 +51,7 @@ Available Commands:
 * `version` - Show version information and supported regions, locales
 * `help` - Help about any command
 
-## Find help from your command prompt
+### Find help from your command prompt
 
 For convenience, consider adding the Custom DPP CLI location to your system path for ease of use. That way you can type `cdpp` from any directory on your system.
 
