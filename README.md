@@ -1,4 +1,4 @@
-# Custom Display-Post-Processor (aka "Custom DPP") -- Private Preview Version
+# Custom Display-Post-Processing (aka "Custom DPP") -- Private Preview Version
 
 ## Overview
 
