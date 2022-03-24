@@ -9,13 +9,13 @@ Automatic Speech Recognition output display format is critical to downstream tas
 ## Features and capabilities
 
 ### Supported features
-* Add **rewrite** rules to replace certain phrases from output with others;
+* Add **rewrite** rules to replace certain phrases from output with others, for capitalization, error correction, etc.;
 * Add **profanity** rules to mask or remove certain words from output;
 * Add advanced **invert-text-normalization** rules to format with certain display patterns (supports on en-us only).
 
 ### Supported locales
 
-:white_check_mark: en-us :white_check_mark: pt-br :white_check_mark: pt-pt :white_check_mark: it-it :white_check_mark: es-es 
+:white_check_mark: en-us :white_check_mark: pt-br :white_check_mark: pt-pt :white_check_mark: it-it :white_check_mark: es-es :white_check_mark: de-de
 
 :white_check_mark: es-mx :white_check_mark: fr-fr :white_check_mark: fr-ca :white_check_mark: zh-cn :white_check_mark: ja-jp 
 
