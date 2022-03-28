@@ -25,13 +25,20 @@ Automatic Speech Recognition output display format is critical to downstream tas
 
 :white_check_mark: North Europe :white_check_mark: West Europe :white_check_mark: East Asia :white_check_mark: Japan East :white_check_mark: Southeast Asia
 
+
+## Prerequisites
+
+* Set up your Azure account and Speech service account, and find your Speech service **key** and **region** (Learn more from [Try the Speech service for free](https://docs.microsoft.com/azure/cognitive-services/speech-service/overview#try-the-speech-service-for-free)).
+* Set up your Custom Speech project and get the **custom model ID**. You can navigate to Speech Studio -> Custom Speech -> your custom speech project -> "Train custom models" tab -> click into one of your custom speech models, and copy the *Model ID* value from the card on the top (Learn more from [Custom Speech overview](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview)).
+
+
+
 ## Get start with Custom DPP CLI
 
 The Custom DPP command-line utility presents easy-to-use commands for display format customization.
 
-See the [Get Start](GETSTART.md) document about how to download and use the CLI tool to upload, evaluate, and deploy your custom display format models.
-
-See the [Concept](CONCEPTS.md) document about the basic concepts of Microsoft display post processing.
+* See the [Get Start](GETSTART.md) document about how to download and use the CLI tool to upload, evaluate, and deploy your custom display format models.
+* See the [Concept](CONCEPTS.md) document about the basic concepts of Microsoft display post processing.
 
 ### Supported operations
 
