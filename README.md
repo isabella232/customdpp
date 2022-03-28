@@ -67,7 +67,7 @@ If you choose not to add Custom DPP CLI to your path, you'll have to change dire
 ## Frequently asked questions
 
 ### Is unified speech-to-text service supported?
-Not in private preview version. You have to specify a custom speech modelID (from [Custom Speech Service](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview)) in order to enable Custom DPP builders. Unified Speech-to-text service without model customiztaion can only benifited from Microsoft built-in DPP base builders.
+Not in private preview version. You have to specify a custom speech modelID (from [Custom Speech Service](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview)) in order to enable Custom DPP builders. Unified Speech-to-text service without model customiztaion can only benefit from Microsoft built-in DPP base builders.
 
 ### Is Bring-Your-Own-Storage (BYOS) supported?
 
