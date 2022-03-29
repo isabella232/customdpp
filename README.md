@@ -85,6 +85,6 @@ After you deploy a Custom DPP model to online Speech Service (by typing `cdpp de
 Also note that there are some service regions still being rolled out across Private Preview period, so please try again later if you encountered any deployment issues.
 
 ### Is Bring-Your-Own-Storage (BYOS) supported?
-Not yet. We are trying to support this in public preview. Learn more about Speech Service BYOS at [Speech service encryption of data at rest](https://docs.microsoft.com/azure/cognitive-services/speech-service/speech-encryption-of-data-at-rest). 
+Not in private preview version. We are trying to support this in later versions. Learn more about Speech Service BYOS at [Speech service encryption of data at rest](https://docs.microsoft.com/azure/cognitive-services/speech-service/speech-encryption-of-data-at-rest). 
 
 
