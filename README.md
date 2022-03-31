@@ -79,6 +79,9 @@ You can push model with empty model files, edit and push your test cases, start 
 ### Is unified speech-to-text service supported?
 Not in private preview version. You have to specify a custom speech modelID (from [Custom Speech Service](https://docs.microsoft.com/azure/cognitive-services/speech-service/custom-speech-overview)) in order to enable Custom DPP builders. Unified Speech-to-text service without model customiztaion can only benefit from Microsoft built-in DPP base builders.
 
+### Any size limits for the Custom DPP rules?
+Yes. For private preview version, the maximum size is 1,000 lines of rules for *Rewrite* and *Profanity* file, and 200 lines of rules for *ITN* file.
+
 ### How long it will take to take effect on Speech service after deployming Custom DPP model?
 After you deploy a Custom DPP model to online Speech Service (by typing `cdpp deploy`), you may wait for 1-3 hours before it takes effect to your custom model and endpoint, afterwards you can validate on the end-to-end audio to display output text process.
 
