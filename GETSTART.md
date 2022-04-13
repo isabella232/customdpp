@@ -113,22 +113,19 @@ To deploy the Custom DPP model to another region, you can use `cdpp config` to c
 
 ### Speech SDK
 
-After the Custom DPP model is deployed, it can be consumed by Microsoft [Speech SDK](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-sdk). 
+After the Custom DPP model is deployed, it can be consumed by Microsoft [Speech SDK](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-sdk)
 
-The following C# code shows how to consume a Custom DPP model via the Speech SDK.
-
-```
-
-var subscriptionKey = "<the same subscription key using to deploy the Custom DPP model>"
-var region = "<the region identifier for the subscription key>"
-var speechModelId = "<your Custom Speech model id that tied to the Custom DPP model>
-
-var config = Microsoft.CognitiveServices.Speech.SpeechConfig.FromSubscription(subscriptionKey, region);
-config.SetServiceProperty("postprocessing", speechModelId, ServicePropertyChannel.UriQueryParameter)
+The following C# code shows how to consume a Custom DPP model via the Speech SDK. The config for other programming languages would be similar.
 
 ```
 
-### REST API
+var speechModelId = "<your Custom Speech model id that tied to the Custom DPP model>";
+var config = Microsoft.CognitiveServices.Speech.SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+config.SetServiceProperty("postprocessing", speechModelId, ServicePropertyChannel.UriQueryParameter);
+
+```
+
+### REST API (not supported yet)
 
 To transcribe a large amount of audio in storage, you may want to use the [batch transcription REST API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/batch-transcription).
 
