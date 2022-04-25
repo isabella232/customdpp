@@ -19,9 +19,7 @@ Automatic Speech Recognition output display format is critical to downstream tas
 
 ### Supported service regions
 
-:white_check_mark: West US :white_check_mark: East US :white_check_mark: Central US 
-
-:white_check_mark: West Central US :white_check_mark: North Europe :white_check_mark: Central India
+:white_check_mark: West US :white_check_mark: East US :white_check_mark: Central US :white_check_mark: West Central US :white_check_mark: North Europe :white_check_mark: Central India
 
 
 ## Prerequisites
