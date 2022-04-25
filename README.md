@@ -15,15 +15,13 @@ Automatic Speech Recognition output display format is critical to downstream tas
 
 ### Supported locales
 
-:white_check_mark: en-us :white_check_mark: pt-br :white_check_mark: pt-pt :white_check_mark: it-it :white_check_mark: es-es :white_check_mark: de-de
-
-:white_check_mark: es-mx :white_check_mark: fr-fr :white_check_mark: fr-ca :white_check_mark: zh-cn :white_check_mark: ja-jp 
+:white_check_mark: en-us
 
 ### Supported service regions
 
-:white_check_mark: West US :white_check_mark: West US2 :white_check_mark: East US :white_check_mark: East US2 :white_check_mark: Central US :white_check_mark: Central India
+:white_check_mark: West US :white_check_mark: East US :white_check_mark: Central US 
 
-:white_check_mark: North Europe :white_check_mark: West Europe :white_check_mark: East Asia :white_check_mark: Japan East :white_check_mark: Southeast Asia
+:white_check_mark: West Central US :white_check_mark: North Europe :white_check_mark: Central India
 
 ## Get start with Custom DPP CLI
 
