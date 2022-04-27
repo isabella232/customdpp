@@ -60,6 +60,46 @@ In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Pr
 
 ## Custom ITN
 
+### Pattern-Based Custom ITN
+
+The philosophy of our custom ITN service is that developers can show us the final output they want top see, and our system will figure out how users might say that, and build a model that maps the predicted spoken expressions to the specified output format.
+
+#### Patterns with Literals
+
+For example, a developer may have an item (maybe a product) named with the alphanumeric form "JO:500".  The job of our system will be to figure out that users might say the letter part as "J O", or they might say "joe", and the number part as "five hundred" or "five zero zero" or "five oh oh" or "five double zero", and then build a model that maps all of these possibilities back to "JO:500" (including inserting the colon).
+
+Patterns can be applied in parallenm (put one per line), so a pattern specification file like:
+
+JO:500
+MM:760
+...
+
+can be used to specify multiple itemns.
+
+Here is a list of supported character classes:
+
+* `\d` - match a digit from '0' to '9', and output it directly
+* `\l` - match a letter (case-insensitive) and transduce it to lower case
+* `\u` - match a letter (case-insensitive) and transduce it to upper case
+* `\a` - match a letter (case-insensitive) and output it directly
+
+There are also "whack escape" expressions for referring to characters that otherwise have special syntactic meaning:
+
+* `\\` - match and output the char '\'
+* '\(' and '\)'
+* '\{' and '\}'
+* '\|'
+* '\+' and '\?' and '\*'
+
+#### Patterns with Wildcards
+
+Suppose a customer needs to refer to a whole series of alphanumeric items named "JO:500", "JO:600", "JO:700", etc.  We can support this without requiring spelling out all possibilities in several ways.
+
+Character ranges can be specified with the notation [...], so "JO:[5-7]00" is equivalent to writing out three patterns.
+
+There is also a set of wildcard items that can be used.  One of these is \d, which means any digit.  So "JO:\d00" covers "JO:000" ... "JO:999".
+
+
 ### How *Custom ITN* model works?
 
 A *Custom ITN* model is composed by two parts, a mini base ITN model provided by Microsoft, and a custom model built from the custom *ITN* rules.
