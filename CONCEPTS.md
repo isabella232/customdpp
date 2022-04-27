@@ -77,8 +77,6 @@ MM:760
 
 can be used to specify multiple itemns.
 
-
-
 #### Patterns with Wildcards
 
 Suppose a customer needs to refer to a whole series of alphanumeric items named "JO:500", "JO:600", "JO:700", etc.  We can support this without requiring spelling out all possibilities in several ways.
@@ -101,6 +99,24 @@ There are also "whack escape" expressions for referring to characters that other
 * `\{` and `\}`
 * `\|`
 * `\+` and `\?` and `\*`
+
+#### Patterns with Regex-style Notation
+
+To enhance the flexibily of pattern writing, Regexc-style constructions of phrases with alternatives, and Kleene-closure are supported.
+
+* A phrase is indicated with parentheses, like `(...)` -- the parentheses do *not* literally count as characters to be matched.
+* You can indicated alternatives within a phrase with the `|`, character, like `(AB|CDE)`.
+* You can suffix a phrase with `?` to indicate that it is optional, `+' to indicate that it can be repeated, or `*` to indicate both.
+
+So, for example, a pattern `(AB|CD)-(\d+)` would represent things like "AB-9" or "CD-22" and be expanded to spoken words like "A B nine" and "C D twenty two" (or "C D two two").
+
+#### Patterns with Explicit Replacement
+
+Although our general philosophy is "you show us what the output should look like, and we'll figure out how people will say it", this doesn't work 100% of the time because some scenarios may have quirky unpredictable wayhs of saying things, or our background rules may just have gaps.  For example, there may be colloquial pronunciations for iniials--maybe "ZPI" is said as "zippy".  In this case a pattern like `ZPI-\d\d` is unlikely to work if a user says "zippy twent two".  For this sort of situation, we have a notation `{spoken>written}`--this particular case could be written out `{zippy>ZPI}-\d\d`.
+
+This can be useful for hanlding thigs that our mapping rules probably should handle, but don't yet.  For example you might write a pattern `\d0-\d0` expecting the system to understand that "-" can mean a range, and should be pronounced "to", as in "twenty to thirty". But perhaps it doesn't.  So you can write a more explicit pattern like `\d0{to>-}\d0` and *tell* it how you expect the dash to be read.
+
+You can also leave out the `>` and following written form to indicate words that should be recognized but ignored.  So a pattern like `{write} (\u.)+` will recognize "write A B C" and output "A.B.C"--dropping the "write" part.
 
 ### How *Custom ITN* model works?
 
