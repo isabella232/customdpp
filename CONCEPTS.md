@@ -70,11 +70,22 @@ For example, a developer may have an item (maybe a product) named with the alpha
 
 Patterns can be applied in parallenm (put one per line), so a pattern specification file like:
 
+```
 JO:500
 MM:760
-...
+```
 
 can be used to specify multiple itemns.
+
+
+
+#### Patterns with Wildcards
+
+Suppose a customer needs to refer to a whole series of alphanumeric items named "JO:500", "JO:600", "JO:700", etc.  We can support this without requiring spelling out all possibilities in several ways.
+
+Character ranges can be specified with the notation `[...]`, so `JO:[5-7]00` is equivalent to writing out three patterns.
+
+There is also a set of wildcard items that can be used.  One of these is \d, which means any digit.  So "JO:\d00" covers "JO:000" ... "JO:999".
 
 Here is a list of supported character classes:
 
@@ -86,19 +97,10 @@ Here is a list of supported character classes:
 There are also "whack escape" expressions for referring to characters that otherwise have special syntactic meaning:
 
 * `\\` - match and output the char '\'
-* '\(' and '\)'
-* '\{' and '\}'
-* '\|'
-* '\+' and '\?' and '\*'
-
-#### Patterns with Wildcards
-
-Suppose a customer needs to refer to a whole series of alphanumeric items named "JO:500", "JO:600", "JO:700", etc.  We can support this without requiring spelling out all possibilities in several ways.
-
-Character ranges can be specified with the notation [...], so "JO:[5-7]00" is equivalent to writing out three patterns.
-
-There is also a set of wildcard items that can be used.  One of these is \d, which means any digit.  So "JO:\d00" covers "JO:000" ... "JO:999".
-
+* `\(` and `\)`
+* `\{` and `\}`
+* `\|`
+* `\+` and `\?` and `\*`
 
 ### How *Custom ITN* model works?
 
