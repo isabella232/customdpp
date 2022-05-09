@@ -60,6 +60,64 @@ In a Custom DPP model, there are three kinds of rules, *ITN*, *Rewrite*, and *Pr
 
 ## Custom ITN
 
+### Pattern-Based Custom ITN
+
+The philosophy of our custom ITN service is that developers can show us the final output they want top see, and our system will figure out how users might say that, and build a model that maps the predicted spoken expressions to the specified output format.
+
+#### Patterns with Literals
+
+For example, a developer may have an item (maybe a product) named with the alphanumeric form "JO:500".  The job of our system will be to figure out that users might say the letter part as "J O", or they might say "joe", and the number part as "five hundred" or "five zero zero" or "five oh oh" or "five double zero", and then build a model that maps all of these possibilities back to "JO:500" (including inserting the colon).
+
+Patterns can be applied in parallenm (put one per line), so a pattern specification file like:
+
+```
+JO:500
+MM:760
+```
+
+can be used to specify multiple itemns.
+
+#### Patterns with Wildcards
+
+Suppose a customer needs to refer to a whole series of alphanumeric items named "JO:500", "JO:600", "JO:700", etc.  We can support this without requiring spelling out all possibilities in several ways.
+
+Character ranges can be specified with the notation `[...]`, so `JO:[5-7]00` is equivalent to writing out three patterns.
+
+There is also a set of wildcard items that can be used.  One of these is \d, which means any digit.  So "JO:\d00" covers "JO:000" ... "JO:999".
+
+Here is a list of supported character classes:
+
+* `\d` - match a digit from '0' to '9', and output it directly
+* `\l` - match a letter (case-insensitive) and transduce it to lower case
+* `\u` - match a letter (case-insensitive) and transduce it to upper case
+* `\a` - match a letter (case-insensitive) and output it directly
+
+There are also "whack escape" expressions for referring to characters that otherwise have special syntactic meaning:
+
+* `\\` - match and output the char '\'
+* `\(` and `\)`
+* `\{` and `\}`
+* `\|`
+* `\+` and `\?` and `\*`
+
+#### Patterns with Regex-style Notation
+
+To enhance the flexibily of pattern writing, Regexc-style constructions of phrases with alternatives, and Kleene-closure are supported.
+
+* A phrase is indicated with parentheses, like `(...)` -- the parentheses do *not* literally count as characters to be matched.
+* You can indicated alternatives within a phrase with the `|`, character, like `(AB|CDE)`.
+* You can suffix a phrase with `?` to indicate that it is optional, `+' to indicate that it can be repeated, or `*` to indicate both.
+
+So, for example, a pattern `(AB|CD)-(\d+)` would represent things like "AB-9" or "CD-22" and be expanded to spoken words like "A B nine" and "C D twenty two" (or "C D two two").
+
+#### Patterns with Explicit Replacement
+
+Although our general philosophy is "you show us what the output should look like, and we'll figure out how people will say it", this doesn't work 100% of the time because some scenarios may have quirky unpredictable wayhs of saying things, or our background rules may just have gaps.  For example, there may be colloquial pronunciations for iniials--maybe "ZPI" is said as "zippy".  In this case a pattern like `ZPI-\d\d` is unlikely to work if a user says "zippy twent two".  For this sort of situation, we have a notation `{spoken>written}`--this particular case could be written out `{zippy>ZPI}-\d\d`.
+
+This can be useful for hanlding thigs that our mapping rules probably should handle, but don't yet.  For example you might write a pattern `\d0-\d0` expecting the system to understand that "-" can mean a range, and should be pronounced "to", as in "twenty to thirty". But perhaps it doesn't.  So you can write a more explicit pattern like `\d0{to>-}\d0` and *tell* it how you expect the dash to be read.
+
+You can also leave out the `>` and following written form to indicate words that should be recognized but ignored.  So a pattern like `{write} (\u.)+` will recognize "write A B C" and output "A.B.C"--dropping the "write" part.
+
 ### How *Custom ITN* model works?
 
 A *Custom ITN* model is composed by two parts, a mini base ITN model provided by Microsoft, and a custom model built from the custom *ITN* rules.
