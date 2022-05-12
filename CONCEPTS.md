@@ -83,7 +83,7 @@ Suppose a customer needs to refer to a whole series of alphanumeric items named 
 
 Character ranges can be specified with the notation `[...]`, so `JO:[5-7]00` is equivalent to writing out three patterns.
 
-There is also a set of wildcard items that can be used.  One of these is \d, which means any digit.  So "JO:\d00" covers "JO:000" ... "JO:999".
+There is also a set of wildcard items that can be used.  One of these is \d, which means any digit.  So "JO:\d00" covers "JO:000", "JO:100", etc ... "JO:900".
 
 Here is a list of supported character classes:
 
