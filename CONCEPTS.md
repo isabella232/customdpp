@@ -107,8 +107,9 @@ To enhance the flexibily of pattern writing, Regexc-style constructions of phras
 * A phrase is indicated with parentheses, like `(...)` -- the parentheses do *not* literally count as characters to be matched.
 * You can indicated alternatives within a phrase with the `|`, character, like `(AB|CDE)`.
 * You can suffix a phrase with `?` to indicate that it is optional, `+' to indicate that it can be repeated, or `*` to indicate both.
+  * Note that you can only suffix *phrases* with these, not individual characters (which is more restrictive than most Regex implementations).
 
-So, for example, a pattern `(AB|CD)-(\d+)` would represent things like "AB-9" or "CD-22" and be expanded to spoken words like "A B nine" and "C D twenty two" (or "C D two two").
+So, for example, a pattern `(AB|CD)-(\d)+` would represent things like "AB-9" or "CD-22" and be expanded to spoken words like "A B nine" and "C D twenty two" (or "C D two two").
 
 #### Patterns with Explicit Replacement
 
