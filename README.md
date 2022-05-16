@@ -15,7 +15,7 @@ Automatic Speech Recognition output display format is critical to downstream tas
 
 ### Supported locales
 
-:white_check_mark: en-us
+:white_check_mark: en-us :white_check_mark: en-gb :white_check_mark: en-ca :white_check_mark: en-in :white_check_mark: zh-cn :white_check_mark: pt-br :white_check_mark: pt-pt :white_check_mark: it-it :white_check_mark: es-es :white_check_mark: es-mx :white_check_mark: fr-fr :white_check_mark: fr-ca :white_check_mark: de-de :white_check_mark: ja-jp
 
 ### Supported service regions
 
