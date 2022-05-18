@@ -194,6 +194,10 @@ To support the weapon names of AK family:
 > *ITN* rule: `AK-\d\d` <br/>
 Sample: `"a k forty seven" -> "AK-47"`
 
+#### Pattern with Replacement
+
+> *ITN* rule: \d[05]{ to >-}\d[05]
+Sample: fifteen to twenty -> 15-20
 
 ## Rewrite
 
