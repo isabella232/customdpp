@@ -94,7 +94,7 @@ Here is a list of supported character classes:
 
 There are also "whack escape" expressions for referring to characters that otherwise have special syntactic meaning:
 
-* `\\` - match and output the char '\'
+* `\\` - match and output the char `\`
 * `\(` and `\)`
 * `\{` and `\}`
 * `\|`
