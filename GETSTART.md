@@ -125,7 +125,7 @@ config.SetServiceProperty("postprocessing", speechModelId, ServicePropertyChanne
 
 ```
 
-### REST API (not supported yet)
+### REST API
 
 To transcribe a large amount of audio in storage, you may want to use the [batch transcription REST API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/batch-transcription).
 To use a Custom DPP model with a Custom Speech model together in a batch transcription, you need to deploy the Custom DPP model with the Custom Speech model identifier as the `cdpp deploy` command argument.
