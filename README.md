@@ -11,15 +11,17 @@ Automatic Speech Recognition output display format is critical to downstream tas
 ### Supported features
 * Add **rewrite** rules to replace certain phrases from output with others, for capitalization, error correction, etc.;
 * Add **profanity** rules to mask or remove certain words from output;
-* Add advanced **invert-text-normalization** rules to format with certain display patterns (supports on en-us only).
+* Add advanced **invert-text-normalization** rules to format with certain display patterns
 
 ### Supported locales
 
-:white_check_mark: en-us :white_check_mark: en-gb :white_check_mark: en-ca :white_check_mark: en-in :white_check_mark: zh-cn :white_check_mark: pt-br :white_check_mark: pt-pt :white_check_mark: it-it :white_check_mark: es-es :white_check_mark: es-mx :white_check_mark: fr-fr :white_check_mark: fr-ca :white_check_mark: de-de :white_check_mark: ja-jp
+:white_check_mark: en-us :white_check_mark: en-gb :white_check_mark: en-ca :white_check_mark: en-in :white_check_mark: de-de (more locale supports are coming in the next version).
 
 ### Supported service regions
 
-:white_check_mark: West US :white_check_mark: East US :white_check_mark: Central US :white_check_mark: West Central US :white_check_mark: North Europe :white_check_mark: Central India
+:white_check_mark:  West US :white_check_mark:  East US :white_check_mark:  Central US :white_check_mark:  West Central US :white_check_mark:  North Europe :white_check_mark:  Central India
+
+[Learn more about Speech service supported regions](https://docs.microsoft.com/azure/cognitive-services/speech-service/regions#speech-to-text-pronunciation-assessment-text-to-speech-and-translation)
 
 
 ## Prerequisites
