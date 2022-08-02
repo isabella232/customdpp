@@ -125,11 +125,28 @@ config.SetServiceProperty("postprocessing", speechModelId, ServicePropertyChanne
 
 ```
 
-### REST API (not supported yet)
+### REST API
 
 To transcribe a large amount of audio in storage, you may want to use the [batch transcription REST API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/batch-transcription).
+To use a Custom DPP model with a Custom Speech model together in a batch transcription, you need to deploy the Custom DPP model with the Custom Speech model identifier as the `cdpp deploy` command argument.
 
-To use a Custom DPP model with a Custom Speech model together in a batch transcription, you just need to deploy the Custom DPP model with the Custom Speech model identifier as the `cdpp deploy` command argument.
+The Swagger based documentation for the batch transcription API is provided here: [Batch Speech to Text API v3.0](https://westus.dev.cognitive.microsoft.com/docs/services/speech-to-text-api-v3-0/operations/CreateTranscription). Example code is provided here: [Examples to use Batch Transcription](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch). 
+The transcription request contains a dictionary `customProperties` where the following flag must be set: `{ "customDppEnabled": "True" }`. Below an example using C#, other languages are similar:
+
+```
+var newTranscription = new Transcription
+{
+    DisplayName = "Transcription using custom dpp",
+    Locale = "en-US", //Specify the locale. LID is not supported
+    ContentUrls = new[] { "http://storagelocation.com/file_to_transcribe.mp3" },
+    Model = new EntityReference { Self = new Uri($"https://{Region}.api.cognitive.microsoft.com/speechtotext/v3.0/models/<id of custom model>") },
+    Properties = new TranscriptionProperties
+    {
+        TimeToLive = TimeSpan.FromDays(1)
+    },
+    CustomProperties = new Dictionary<string, string>() { { "customDppEnabled", "True" } },
+};
+```
 
 ## Other useful commands
 
