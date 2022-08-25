@@ -15,7 +15,7 @@ Automatic Speech Recognition output display format is critical to downstream tas
 
 ### Supported language and locales
 
-:white_check_mark: en-us :white_check_mark: en-gb :white_check_mark: en-ca :white_check_mark: en-in :white_check_mark: de-de :white_check_mark: it-it :white_check_mark: es-es :white_check_mark: es-mx :white_check_mark: fr-ca :white_check_mark: fr-fr :white_check_mark: zh-cn :white_check_mark: ja-jp :white_check_mark: ko-kr :white_check_mark: nb-no :white_check_mark: nl-nl (more locale supports are coming in the next versions).
+:white_check_mark: en-US :white_check_mark: en-GB :white_check_mark: en-CA :white_check_mark: en-IN :white_check_mark: de-DE :white_check_mark: it-IT :white_check_mark: es-ES :white_check_mark: es-MX :white_check_mark: fr-CA :white_check_mark: fr-FR :white_check_mark: zh-CN :white_check_mark: ja-JP :white_check_mark: ko-KR :white_check_mark: nb-NO :white_check_mark: nl-NL (more locale supports are coming in the next versions).
 
 [Learn more about Speech service supported languages and locales](https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support)
 
